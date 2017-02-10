@@ -39,15 +39,9 @@
         console.log('qq');
         this.classList.remove('active');
         var data = e.dataTransfer.getData('text/plain');
-        if (data) {
-            // 拖入的是文本
-            target.innerHTML = data;
-            console.log('qq');
-        } else {
-            var img = document.createElement('img');
-            img.src = e.dataTransfer.getData('text/uri-list');
-            target.appendChild(img);
-        }
+        // text/html的意思是将文件的content-type设置为text/html的形式，浏览器在获取到这种文件时会自动调用html的解析器对文件进行相应的处理。
+        // text/plain的意思是将文件设置为纯文本的形式，浏览器在获取到这种文件时并不会对其进行处理。        
+        target.innerHTML = data;
         e.preventDefault();
         e.stopPropagation();
     })
