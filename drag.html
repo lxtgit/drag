@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        div {
+            width: 400px;
+            height: 400px;
+            border: 1px dashed #ccc;
+        }
+
+        .active {
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+<p>今天天气不错啊</p>
+<img src="toy.png" alt=""/>
+
+<div id="target"></div>
+<script>
+    var target = document.querySelector('#target');
+    target.addEventListener('dragenter', function () {
+        this.classList.add('active');
+
+    });
+    target.addEventListener('dragleave', function () {
+        this.classList.remove('active');
+    });
+
+    // 如果想要捕获drop事件 就一定得在该事件中阻止默认事件
+    target.addEventListener('dragover', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+    });
+    target.addEventListener('drop',function (e) {
+        console.log('qq');
+        this.classList.remove('active');
+        var data = e.dataTransfer.getData('text/plain');
+        if (data) {
+            // 拖入的是文本
+            target.innerHTML = data;
+            console.log('qq');
+        } else {
+            var img = document.createElement('img');
+            img.src = e.dataTransfer.getData('text/uri-list');
+            target.appendChild(img);
+        }
+        e.preventDefault();
+        e.stopPropagation();
+    })
+
+</script>
+</body>
+</html>
