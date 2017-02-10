@@ -38,7 +38,7 @@
     target.addEventListener('drop',function (e) {
         console.log('qq');
         this.classList.remove('active');
-        var data = e.dataTransfer.getData('text/plain');
+        var data = e.dataTransfer.getData('text/html');
         // text/html的意思是将文件的content-type设置为text/html的形式，浏览器在获取到这种文件时会自动调用html的解析器对文件进行相应的处理。
         // text/plain的意思是将文件设置为纯文本的形式，浏览器在获取到这种文件时并不会对其进行处理。        
         target.innerHTML = data;
